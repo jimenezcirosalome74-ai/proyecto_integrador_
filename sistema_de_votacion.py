@@ -56,11 +56,6 @@ def registrar_voto():
     guardar_voto(cedula, candidato_elegido)
     print(f"¡Voto registrado con éxito para {candidato_elegido}!")
 
-if __name__ == "__main__":
-    registrar_voto()
-
-
-
 def ver_resultados():
     """Muestra el conteo total de votos por candidato y el total general."""
     votos = cargar_votos()
@@ -79,4 +74,47 @@ def ver_resultados():
     for candidato, total in conteo.items():
         print(f"- {candidato}: {total} voto(s)")
 
-    print(f"\nTotal general de votos emitidos: {len(votos)}")    
+    print(f"\nTotal general de votos emitidos: {len(votos)}")
+
+def reiniciar_votacion():
+    """Elimina el registro de votos tras solicitar una confirmación."""
+    print("\n--- REINICIAR VOTACIÓN ---")
+    if not os.path.exists(DATABASE_FILE):
+        print("No existe ningún registro de votos actualmente.")
+        return
+
+    confirmacion = input("¿Está seguro de que desea reiniciar la votación? Se borrarán todos los votos (s/n): ").strip().lower()
+    
+    if confirmacion == 's':
+        os.remove(DATABASE_FILE)
+        print("¡La votación ha sido reiniciada con éxito! Todos los registros fueron eliminados.")
+    else:
+        print("Operación cancelada. Los votos se mantienen intactos.")
+
+def menu():
+    """Muestra el menú principal e interactúa con el usuario."""
+    while True:
+        print("\n===============================")
+        print("   SISTEMA DE VOTACIÓN")
+        print("===============================")
+        print("1. Registrar voto")
+        print("2. Ver resultados")
+        print("3. Reiniciar votación")
+        print("4. Salir")
+        
+        opcion = input("Seleccione una opción (1-4): ").strip()
+        
+        if opcion == "1":
+            registrar_voto()
+        elif opcion == "2":
+            ver_resultados()
+        elif opcion == "3":
+            reiniciar_votacion()
+        elif opcion == "4":
+            print("Saliendo del sistema. ¡Hasta luego!")
+            break
+        else:
+            print("Opción no válida. Por favor, intente de nuevo.")
+
+if __name__ == "__main__":
+    menu()
