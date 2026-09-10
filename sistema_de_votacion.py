@@ -58,3 +58,25 @@ def registrar_voto():
 
 if __name__ == "__main__":
     registrar_voto()
+
+
+
+def ver_resultados():
+    """Muestra el conteo total de votos por candidato y el total general."""
+    votos = cargar_votos()
+
+    print("\n--- RESULTADOS DE LA VOTACIÓN ---")
+    if not votos:
+        print("Aún no se han registrado votos.")
+        return
+
+    # Conteo de votos por candidato
+    conteo = {}
+    for candidato in votos.values():
+        conteo[candidato] = conteo.get(candidato, 0) + 1
+
+    # Despliegue de resultados
+    for candidato, total in conteo.items():
+        print(f"- {candidato}: {total} voto(s)")
+
+    print(f"\nTotal general de votos emitidos: {len(votos)}")    
