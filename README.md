@@ -38,3 +38,16 @@ Aplicación de consola desarrollada en Python para gestionar un proceso de votac
    ```bash
    python sistema_votacion.py
 
+# Sistema de Votación - Proyecto Integrador
+
+## 📋 Descripción
+Sistema desarrollado en Python para el registro seguro de votos con persistencia en archivos de texto, validación contra votos duplicados, y cálculo de resultados y ganador.
+
+## 🚀 Funcionalidades Principales
+1. **Registro de Votos:** Permite registrar el voto de un ciudadano ingresando su número de cédula, validando que no vote dos veces y guardándolo de forma persistente en `votos.txt`. *(Desarrollado por [Nombre integrante 1])*
+2. **Resultados y Ganador:** Muestra el conteo detallado de votos por candidato, el total general y determina de forma automática al ganador o si hay un empate. *(Desarrollado por [Nombre integrante 2])*
+3. **Reiniciar Votación:** Permite limpiar el registro de votos del sistema previa confirmación de seguridad. *(Desarrollado por [Nombre integrante 3])*
+
+## 🛠️ Tecnologías
+- Python (Manejo de archivos, estructuras de datos, condicionales y bucles)
+- Git y GitHub (Control de versiones en equipo)
