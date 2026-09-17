@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 0268da5fc890ae9c4c6a2fccf7d86753375e1a0f
 import os
 
 DATABASE_FILE = "votos.txt"
@@ -60,12 +57,8 @@ def registrar_voto():
     guardar_voto(cedula, candidato_elegido)
     print(f"¡Voto registrado con éxito para {candidato_elegido}!")
 
-<<<<<<< HEAD
-if __name__ == "__main__":
-    registrar_voto()
-=======
 def ver_resultados():
-    """Muestra el conteo total de votos por candidato y el total general."""
+    """Muestra el conteo total de votos por candidato, el total general y determina el ganador."""
     votos = cargar_votos()
 
     print("\n--- RESULTADOS DE LA VOTACIÓN ---")
@@ -78,11 +71,29 @@ def ver_resultados():
     for candidato in votos.values():
         conteo[candidato] = conteo.get(candidato, 0) + 1
 
-    # Despliegue de resultados
+    # Despliegue de resultados individuales
     for candidato, total in conteo.items():
         print(f"- {candidato}: {total} voto(s)")
 
     print(f"\nTotal general de votos emitidos: {len(votos)}")
+
+    # MEJORA ADICIONAL: Determinar y mostrar el ganador o empate
+    max_votos = -1
+    ganadores = []
+
+    for candidato, total in conteo.items():
+        if total > max_votos:
+            max_votos = total
+            ganadores = [candidato]
+        elif total == max_votos:
+            ganadores.append(candidato)
+
+    print("\n---------------------------------")
+    if len(ganadores) == 1:
+        print(f"🏆 ¡El ganador actual es: {ganadores[0]} con {max_votos} voto(s)! 🏆")
+    else:
+        print(f"🤝 ¡Hay un empate entre: {', '.join(ganadores)} con {max_votos} voto(s) cada uno! 🤝")
+    print("---------------------------------")
 
 def reiniciar_votacion():
     """Elimina el registro de votos tras solicitar una confirmación."""
@@ -106,7 +117,7 @@ def menu():
         print("   SISTEMA DE VOTACIÓN")
         print("===============================")
         print("1. Registrar voto")
-        print("2. Ver resultados")
+        print("2. Ver resultados y ganador")
         print("3. Reiniciar votación")
         print("4. Salir")
         
@@ -119,11 +130,10 @@ def menu():
         elif opcion == "3":
             reiniciar_votacion()
         elif opcion == "4":
-            print("Saliendo del sistema. ¡Hasta luego!")
+            print("Saling del sistema. ¡Hasta luego!")
             break
         else:
             print("Opción no válida. Por favor, intente de nuevo.")
 
 if __name__ == "__main__":
     menu()
->>>>>>> 0268da5fc890ae9c4c6a2fccf7d86753375e1a0f
